@@ -1,0 +1,13 @@
+{% from "shuup/admin/macros/general.jinja" import content_block %}
+{% set table_form = form["base"] %}
+
+{% call content_block(_("General Information"), "fa-info-circle") %}
+    {{ bs3.field(table_form.identifier) }}
+    {{ bs3.field(table_form.name) }}
+    {{ bs3.field(table_form.carrier) }}
+    {{ bs3.field(table_form.start_date) }}
+    {{ bs3.field(table_form.end_date) }}
+    {{ bs3.field(table_form.shops) }}
+    {{ bs3.field(table_form.excluded_regions) }}
+    {{ bs3.field(table_form.enabled) }}
+{% endcall %}

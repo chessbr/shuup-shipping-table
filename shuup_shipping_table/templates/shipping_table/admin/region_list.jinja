@@ -1,0 +1,33 @@
+{% extends "shuup/admin/base_picotable.jinja" %}
+
+{% block content %}
+{{ super() }}
+<form id="import-json-form" action="{{ url('shuup_admin:shuup_shipping_table.region.import') }}" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<input id="import-json-input" type="file" name="json_file" hidden />
+</form>
+{% endblock %}
+
+{% block extra_js %}
+{{ super() }}
+<script>
+    $(document).ready(function (){
+        $("#import-json-input").hide();
+
+        $("#import-json-input").change(function (evt){
+            if(confirm("{% trans %}This action will overwrite the existing regions with same ID. Are you sure?{% endtrans %}")){
+                $("#import-json-form").submit();
+            }
+        });
+    });
+
+    function downloadAsJSON(){
+        window.open("{{ url('shuup_admin:shuup_shipping_table.region.export') }}", "_blank");
+    }
+
+    function importFromJSON(){
+        $("#import-json-input").focus().trigger('click'); 
+    }
+
+</script>
+{% endblock %}
