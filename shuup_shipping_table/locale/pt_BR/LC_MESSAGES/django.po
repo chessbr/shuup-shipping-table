@@ -1,0 +1,358 @@
+# Portuguese (Brazil) translations for shuup-shipping-table.
+# Copyright (C) 2016 Rockho Team
+# This file is distributed under the same license as the
+# shuup-shipping-table project.
+# Christian Hess <chess@rockho.com.br>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: shuup-shipping-table 1.0.0\n"
+"Report-Msgid-Bugs-To: chess@rockho.com.br\n"
+"POT-Creation-Date: 2016-07-27 22:22-0300\n"
+"PO-Revision-Date: 2016-07-27 20:12-0300\n"
+"Last-Translator: Christian Hess <chess@rockho.com.br>\n"
+"Language: pt_BR\n"
+"Language-Team: Rockho <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: shuup_shipping_table/models.py:42
+msgid "Lowest price"
+msgstr "Menor preço"
+
+#: shuup_shipping_table/models.py:43
+msgid "Lowest delivery time"
+msgstr "Menor prazo de entrega"
+
+#: shuup_shipping_table/models.py:47
+msgid "additional delivery time"
+msgstr "prazo de entrega adicional"
+
+#: shuup_shipping_table/models.py:49
+msgid "Extra number of days to add."
+msgstr "prazo de entrega extra a ser incrementado"
+
+#: shuup_shipping_table/models.py:51
+msgid "additional price"
+msgstr "preço adicional"
+
+#: shuup_shipping_table/models.py:53
+msgid "Extra amount to add."
+msgstr "preço adicional a ser incrementado"
+
+#: shuup_shipping_table/models.py:108
+msgid "No table found"
+msgstr "Nenhuma tabela encontrada"
+
+#: shuup_shipping_table/models.py:131
+msgid "Shipping Table: custom fetch mode"
+msgstr "Tabela de Frete: busca personalizada"
+
+#: shuup_shipping_table/models.py:132
+msgid "Fetches the price and delivery time using a custom mode."
+msgstr "Busca o preço e o prazo de entrega utilizando configurações personalizadas"
+
+#: shuup_shipping_table/models.py:135
+msgid "mode"
+msgstr "modo"
+
+#: shuup_shipping_table/models.py:136
+msgid "Select the mode which will be used to fetch a shipping table."
+msgstr "Selecione o modo que irá ser utilizado para buscar a tabela de frete"
+
+#: shuup_shipping_table/models.py:140
+msgid "tables filter"
+msgstr "filtro de tabelas"
+
+#: shuup_shipping_table/models.py:142
+msgid ""
+"Only selected tables will be used to calculate shipping. Blank means all "
+"available tables."
+msgstr ""
+"Somente as tabelas selecionadas serão utilizadas para busca. Em branco "
+"significa todas as tabelas habilitadas."
+
+#: shuup_shipping_table/models.py:147
+msgid "carriers filter"
+msgstr "filtro de transportadoras"
+
+#: shuup_shipping_table/models.py:149
+msgid ""
+"Only selected carriers will be used to calculate shipping. Blank means "
+"all carriers."
+msgstr ""
+"Somente as transportadoras selecionadas serão utilizadas para busca. Em "
+"branco significa todas as transportadoras habilitadas."
+
+#: shuup_shipping_table/models.py:179
+msgid "Shipping Table: specific table"
+msgstr "Tabela de Frete: tabela específica"
+
+#: shuup_shipping_table/models.py:180
+msgid "Fetches the price and delivery time from a specific shipping table"
+msgstr "Busca o preço e o prazo de entrega de uma tabela específica"
+
+#: shuup_shipping_table/models.py:183 shuup_shipping_table/models.py:321
+msgid "table"
+msgstr "tabela"
+
+#: shuup_shipping_table/models.py:184
+msgid "Select the table to fetch the price and delivery time."
+msgstr ""
+"Selecione a tabela que será utilizada para a busca do preço e prazo de "
+"entrega."
+
+#: shuup_shipping_table/models.py:200 shuup_shipping_table/models.py:226
+#: shuup_shipping_table/models.py:296
+msgid "name"
+msgstr "nome"
+
+#: shuup_shipping_table/models.py:201 shuup_shipping_table/models.py:297
+msgid "enabled"
+msgstr "habilitado"
+
+#: shuup_shipping_table/models.py:204 shuup_shipping_table/models.py:307
+msgid "shops"
+msgstr "lojas"
+
+#: shuup_shipping_table/models.py:205
+msgid "Select the shops which can use this carrier. Blank means no shop!"
+msgstr ""
+"Selecione as lojas que podem utilizar esta transportadora. Em branco "
+"significa nenhuma loja!"
+
+#: shuup_shipping_table/models.py:209
+msgid "shipping carrier"
+msgstr "transportadora"
+
+#: shuup_shipping_table/models.py:210
+msgid "shipping carriers"
+msgstr "transportadoras"
+
+#: shuup_shipping_table/models.py:220
+msgid "priority"
+msgstr "prioridade"
+
+#: shuup_shipping_table/models.py:222
+msgid ""
+"A higher number means this region is most important than other with a "
+"lower priority"
+msgstr ""
+"Um número alto significa que esta região é mais importante que uma região"
+" de menor prioridade e será utilizada primeiro."
+
+#: shuup_shipping_table/models.py:227
+msgid "description"
+msgstr "descrição"
+
+#: shuup_shipping_table/models.py:231
+msgid "shipping region"
+msgstr "região de entrega"
+
+#: shuup_shipping_table/models.py:232
+msgid "shipping regions"
+msgstr "regiões de entrega"
+
+#: shuup_shipping_table/models.py:253 shuup_shipping_table/models.py:276
+msgid "country"
+msgstr "país"
+
+#: shuup_shipping_table/models.py:254
+msgid "starting postal code"
+msgstr "CEP inicial"
+
+#: shuup_shipping_table/models.py:255
+msgid "ending postal code"
+msgstr "CEP final"
+
+#: shuup_shipping_table/models.py:258
+msgid "shipping region by postal code range"
+msgstr "região por faixa de CEP"
+
+#: shuup_shipping_table/models.py:259
+msgid "shipping regions by postal code range"
+msgstr "regiões por faixa de CEP"
+
+#: shuup_shipping_table/models.py:279
+msgid "shipping region by country"
+msgstr "região por país"
+
+#: shuup_shipping_table/models.py:280
+msgid "shipping regions by country"
+msgstr "regiões por país"
+
+#: shuup_shipping_table/models.py:294
+msgid "identifier"
+msgstr "identificador"
+
+#: shuup_shipping_table/models.py:295
+msgid "A slug identifier, e.g my-table-id-3218321"
+msgstr "um identificador slug, ex: minha-tabela-id-231312"
+
+#: shuup_shipping_table/models.py:298
+msgid "carrier"
+msgstr "transportadora"
+
+#: shuup_shipping_table/models.py:300
+msgid "excluded regions"
+msgstr "regiões excluídas"
+
+#: shuup_shipping_table/models.py:301
+msgid "Selected regions will be excluded from this table"
+msgstr ""
+"Selecione regiões que devem ser excluídas desta tabela. Regiões que forem"
+" compatíveis com as selecionadas serão ignoradas."
+
+#: shuup_shipping_table/models.py:303
+msgid "start date"
+msgstr "data de validade inicial"
+
+#: shuup_shipping_table/models.py:304
+msgid "end date"
+msgstr "data de validade final"
+
+#: shuup_shipping_table/models.py:308
+msgid "Select the shops which can use this table. Blank means no shop!"
+msgstr ""
+"Selecione as lojas que poderão utilizar esta tabela. Em branco significa "
+"nenhuma loja!"
+
+#: shuup_shipping_table/models.py:312
+msgid "shipping table"
+msgstr "tabela de frete"
+
+#: shuup_shipping_table/models.py:313
+msgid "shipping tables"
+msgstr "tabelas de frete"
+
+#: shuup_shipping_table/models.py:322
+msgid "region"
+msgstr "região"
+
+#: shuup_shipping_table/models.py:324
+msgid "start weight (g)"
+msgstr "peso inicial (g)"
+
+#: shuup_shipping_table/models.py:325
+msgid "end weight (g)"
+msgstr "peso final (g)"
+
+#: shuup_shipping_table/models.py:327
+msgid "price"
+msgstr "preço"
+
+#: shuup_shipping_table/models.py:328
+msgid "delivery time (days)"
+msgstr "prazo de entrega (dias)"
+
+#: shuup_shipping_table/models.py:331
+msgid "shipping price table"
+msgstr "tabela de preço de frete"
+
+#: shuup_shipping_table/models.py:332
+msgid "shipping price tables"
+msgstr "tabelas de preço de frete"
+
+#: shuup_shipping_table/admin/__init__.py:21
+msgid "Shipping Table"
+msgstr "Tabela de Frete"
+
+#: shuup_shipping_table/admin/__init__.py:68
+msgid "Shipping tables"
+msgstr "Tabelas de Frete"
+
+#: shuup_shipping_table/admin/__init__.py:81
+msgid "Carriers"
+msgstr "Transportadoras"
+
+#: shuup_shipping_table/admin/__init__.py:94
+msgid "Regions"
+msgstr "Regiões"
+
+#: shuup_shipping_table/admin/views/carrier.py:25
+#: shuup_shipping_table/admin/views/region.py:36
+#: shuup_shipping_table/admin/views/table.py:28
+msgid "Name"
+msgstr "Nome"
+
+#: shuup_shipping_table/admin/views/carrier.py:26
+#: shuup_shipping_table/admin/views/table.py:30
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: shuup_shipping_table/admin/views/carrier.py:27
+msgid "Shops"
+msgstr "Lojas"
+
+#: shuup_shipping_table/admin/views/region.py:37
+#: shuup_shipping_table/admin/views/region.py:103
+msgid "Type"
+msgstr "Tipo"
+
+#: shuup_shipping_table/admin/views/region.py:46
+msgid "Import from JSON"
+msgstr "Importar de JSON"
+
+#: shuup_shipping_table/admin/views/region.py:51
+msgid "Download as JSON"
+msgstr "Baixar como JSON"
+
+#: shuup_shipping_table/admin/views/region.py:129
+msgid "Missing JSON file"
+msgstr "Arquivo JSON não encontrado"
+
+#: shuup_shipping_table/admin/views/table.py:29
+msgid "Identifier"
+msgstr "Identificador"
+
+#: shuup_shipping_table/admin/views/table.py:31
+msgid "Start Date"
+msgstr "Data inicial"
+
+#: shuup_shipping_table/admin/views/table.py:32
+msgid "End Date"
+msgstr "Data final"
+
+#: shuup_shipping_table/admin/views/table.py:33
+msgid "Carrier"
+msgstr "Transportadora"
+
+#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_form.jinja:4
+msgid "General Information"
+msgstr "Informações gerais"
+
+#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:17
+msgid "Prices"
+msgstr "Preços"
+
+#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:22
+msgid "Region"
+msgstr "Região"
+
+#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:23
+msgid "Start weight (g)"
+msgstr "Peso inicial (g)"
+
+#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:24
+msgid "End weight (g)"
+msgstr "Peso final (g)"
+
+#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:25
+msgid "Price"
+msgstr "Preço"
+
+#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:26
+msgid "Delivery time (days)"
+msgstr "Prazo de entrega (dias)"
+
+#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:35
+msgid "To add more itens, please save the current ones. "
+msgstr "Para adicionar mais itens, por favor, salve os itens atuais."
+
+#: shuup_shipping_table/templates/shipping_table/admin/carrier_edit.jinja:4
+msgid "New Carrier"
+msgstr "Nova transportadora"
+
