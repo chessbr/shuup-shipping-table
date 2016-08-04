@@ -19,26 +19,26 @@ from shuup_shipping_table.models import (
     ShippingTable, ShippingTableByModeBehaviorComponent, ShippingTableItem,
     SpecificShippingTableBehaviorComponent
 )
+from shuup_tests.front.test_checkout_flow import fill_address_inputs
+from shuup_tests.utils import SmartClient
 from shuup_tests.utils.basketish_order_source import BasketishOrderSource
 
+from django.core.urlresolvers import reverse
 from django.utils.timezone import now
 
+from shuup.core.defaults.order_statuses import create_default_order_statuses
 from shuup.core.models._contacts import get_person_contact
 from shuup.core.models._order_lines import OrderLineType
+from shuup.core.models._orders import Order, PaymentStatus
+from shuup.core.models._product_shops import ShopProduct
 from shuup.core.models._service_shipping import CustomCarrier
 from shuup.testing.factories import (
     get_address, get_default_product, get_default_shop, get_default_supplier, get_default_tax_class,
     get_payment_method
 )
-from shuup.xtheme._theme import set_current_theme
-from shuup.core.defaults.order_statuses import create_default_order_statuses
 from shuup.testing.mock_population import populate_if_required
-from shuup.core.models._product_shops import ShopProduct
-from shuup_tests.utils import SmartClient
-from django.core.urlresolvers import reverse
-from shuup_tests.front.test_checkout_flow import fill_address_inputs
-from shuup.core.models._orders import Order, PaymentStatus
 from shuup.testing.soup_utils import extract_form_fields
+from shuup.xtheme._theme import set_current_theme
 
 
 def get_custom_carrier_service():

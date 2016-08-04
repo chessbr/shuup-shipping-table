@@ -13,3 +13,11 @@
         </form>
     {% endcall %}
 {% endblock %}
+
+{% block extra_js %}
+    <script>
+        function saveAsACopy(){
+            $("#shipping_table_form").attr("action", "{{ url('shuup_admin:shuup_shipping_table.table.new') }}").submit();
+        }
+    </script>
+{% endblock %}

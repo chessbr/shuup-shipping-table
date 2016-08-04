@@ -17,6 +17,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import DeleteView
 
 from shuup.admin.form_part import FormPartsViewMixin, SaveFormPartsMixin
+from shuup.admin.toolbar import JavaScriptActionButton
 from shuup.admin.utils.picotable import ChoicesFilter, Column, TextFilter
 from shuup.admin.utils.views import CreateOrUpdateView, PicotableListView
 from shuup.utils.i18n import get_locally_formatted_datetime
@@ -55,6 +56,19 @@ class TableEditView(SaveFormPartsMixin, FormPartsViewMixin, CreateOrUpdateView):
     @atomic
     def form_valid(self, form):
         return self.save_form_parts(form)
+
+    def get_toolbar(self):
+        toolbar = super(TableEditView, self).get_toolbar()
+
+        if self.object.pk:
+            save_as_copy_button = JavaScriptActionButton(
+                onclick="saveAsACopy()",
+                text=_("Save as a copy"),
+                icon="fa fa-clone",
+            )
+            toolbar.append(save_as_copy_button)
+
+        return toolbar
 
 
 class TableDeleteView(DeleteView):

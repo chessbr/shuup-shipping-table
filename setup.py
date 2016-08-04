@@ -7,8 +7,8 @@
 # This source code is licensed under the AGPLv3 license found in the
 # LICENSE file in the root directory of this source tree.
 
-from babel.messages import frontend as babel
 import setuptools
+from babel.messages import frontend as babel
 
 NAME = 'shuup-shipping-table'
 VERSION = '1.0.0'
