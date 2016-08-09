@@ -264,8 +264,11 @@ class PostalCodeRangeShippingRegion(ShippingRegion):
                 source.shipping_address.country != self.country:
             return False
 
-        postal_code_int = int("".join([d for d in source.shipping_address.postal_code if d.isdigit()]))
-        return self.start_postal_code <= postal_code_int and self.end_postal_code >= postal_code_int
+        try:
+            postal_code_int = int("".join([d for d in source.shipping_address.postal_code if d.isdigit()]))
+            return (self.start_postal_code <= postal_code_int <= self.end_postal_code)
+        except ValueError:
+            return False
 
     def __str__(self):
         return self.name
