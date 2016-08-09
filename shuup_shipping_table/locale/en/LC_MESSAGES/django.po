@@ -1,353 +1,343 @@
-# English translations for shuup-shipping-table.
+# Shuup Shipping Table
 # Copyright (C) 2016 Rockho Team
-# This file is distributed under the same license as the
-# shuup-shipping-table project.
+# This file is distributed under the same license as the Shuup Shipping Table package.
 # Christian Hess <chess@rockho.com.br>, 2016.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: shuup-shipping-table 1.0.0\n"
-"Report-Msgid-Bugs-To: chess@rockho.com.br\n"
-"POT-Creation-Date: 2016-07-27 22:22-0300\n"
-"PO-Revision-Date: 2016-07-27 20:12-0300\n"
-"Last-Translator: Christian Hess <chess@rockho.com.br>\n"
-"Language: en\n"
-"Language-Team: Rockho <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: shuup_shipping_table/models.py:42
-msgid "Lowest price"
-msgstr ""
-
-#: shuup_shipping_table/models.py:43
-msgid "Lowest delivery time"
-msgstr ""
-
-#: shuup_shipping_table/models.py:47
-msgid "additional delivery time"
-msgstr ""
-
-#: shuup_shipping_table/models.py:49
-msgid "Extra number of days to add."
-msgstr ""
-
-#: shuup_shipping_table/models.py:51
-msgid "additional price"
-msgstr ""
-
-#: shuup_shipping_table/models.py:53
-msgid "Extra amount to add."
-msgstr ""
-
-#: shuup_shipping_table/models.py:108
-msgid "No table found"
-msgstr ""
-
-#: shuup_shipping_table/models.py:131
-msgid "Shipping Table: custom fetch mode"
-msgstr ""
-
-#: shuup_shipping_table/models.py:132
-msgid "Fetches the price and delivery time using a custom mode."
-msgstr ""
-
-#: shuup_shipping_table/models.py:135
-msgid "mode"
-msgstr ""
-
-#: shuup_shipping_table/models.py:136
-msgid "Select the mode which will be used to fetch a shipping table."
-msgstr ""
-
-#: shuup_shipping_table/models.py:140
-msgid "tables filter"
-msgstr ""
-
-#: shuup_shipping_table/models.py:142
-msgid ""
-"Only selected tables will be used to calculate shipping. Blank means all "
-"available tables."
-msgstr ""
-
-#: shuup_shipping_table/models.py:147
-msgid "carriers filter"
-msgstr ""
-
-#: shuup_shipping_table/models.py:149
-msgid ""
-"Only selected carriers will be used to calculate shipping. Blank means "
-"all carriers."
-msgstr ""
-
-#: shuup_shipping_table/models.py:179
-msgid "Shipping Table: specific table"
-msgstr ""
-
-#: shuup_shipping_table/models.py:180
-msgid "Fetches the price and delivery time from a specific shipping table"
-msgstr ""
-
-#: shuup_shipping_table/models.py:183 shuup_shipping_table/models.py:321
-msgid "table"
-msgstr ""
-
-#: shuup_shipping_table/models.py:184
-msgid "Select the table to fetch the price and delivery time."
-msgstr ""
-
-#: shuup_shipping_table/models.py:200 shuup_shipping_table/models.py:226
-#: shuup_shipping_table/models.py:296
-msgid "name"
-msgstr ""
-
-#: shuup_shipping_table/models.py:201 shuup_shipping_table/models.py:297
-msgid "enabled"
-msgstr ""
-
-#: shuup_shipping_table/models.py:204 shuup_shipping_table/models.py:307
-msgid "shops"
-msgstr ""
-
-#: shuup_shipping_table/models.py:205
-msgid "Select the shops which can use this carrier. Blank means no shop!"
-msgstr ""
-
-#: shuup_shipping_table/models.py:209
-msgid "shipping carrier"
-msgstr ""
-
-#: shuup_shipping_table/models.py:210
-msgid "shipping carriers"
-msgstr ""
-
-#: shuup_shipping_table/models.py:220
-msgid "priority"
-msgstr ""
-
-#: shuup_shipping_table/models.py:222
-msgid ""
-"A higher number means this region is most important than other with a "
-"lower priority"
-msgstr ""
-
-#: shuup_shipping_table/models.py:227
-msgid "description"
-msgstr ""
-
-#: shuup_shipping_table/models.py:231
-msgid "shipping region"
-msgstr ""
-
-#: shuup_shipping_table/models.py:232
-msgid "shipping regions"
-msgstr ""
-
-#: shuup_shipping_table/models.py:253 shuup_shipping_table/models.py:276
-msgid "country"
-msgstr ""
-
-#: shuup_shipping_table/models.py:254
-msgid "starting postal code"
-msgstr ""
-
-#: shuup_shipping_table/models.py:255
-msgid "ending postal code"
-msgstr ""
-
-#: shuup_shipping_table/models.py:258
-msgid "shipping region by postal code range"
-msgstr ""
-
-#: shuup_shipping_table/models.py:259
-msgid "shipping regions by postal code range"
-msgstr ""
-
-#: shuup_shipping_table/models.py:279
-msgid "shipping region by country"
-msgstr ""
-
-#: shuup_shipping_table/models.py:280
-msgid "shipping regions by country"
-msgstr ""
-
-#: shuup_shipping_table/models.py:294
-msgid "identifier"
-msgstr ""
-
-#: shuup_shipping_table/models.py:295
-msgid "A slug identifier, e.g my-table-id-3218321"
-msgstr ""
-
-#: shuup_shipping_table/models.py:298
-msgid "carrier"
-msgstr ""
-
-#: shuup_shipping_table/models.py:300
-msgid "excluded regions"
-msgstr ""
-
-#: shuup_shipping_table/models.py:301
-msgid "Selected regions will be excluded from this table"
-msgstr ""
-
-#: shuup_shipping_table/models.py:303
-msgid "start date"
-msgstr ""
-
-#: shuup_shipping_table/models.py:304
-msgid "end date"
-msgstr ""
-
-#: shuup_shipping_table/models.py:308
-msgid "Select the shops which can use this table. Blank means no shop!"
-msgstr ""
-
-#: shuup_shipping_table/models.py:312
-msgid "shipping table"
-msgstr ""
-
-#: shuup_shipping_table/models.py:313
-msgid "shipping tables"
-msgstr ""
-
-#: shuup_shipping_table/models.py:322
-msgid "region"
-msgstr ""
-
-#: shuup_shipping_table/models.py:324
-msgid "start weight (g)"
-msgstr ""
-
-#: shuup_shipping_table/models.py:325
-msgid "end weight (g)"
-msgstr ""
-
-#: shuup_shipping_table/models.py:327
-msgid "price"
-msgstr ""
-
-#: shuup_shipping_table/models.py:328
-msgid "delivery time (days)"
-msgstr ""
-
-#: shuup_shipping_table/models.py:331
-msgid "shipping price table"
-msgstr ""
-
-#: shuup_shipping_table/models.py:332
-msgid "shipping price tables"
-msgstr ""
-
-#: shuup_shipping_table/admin/__init__.py:21
+#: admin/__init__.py:21
 msgid "Shipping Table"
 msgstr ""
 
-#: shuup_shipping_table/admin/__init__.py:68
+#: admin/__init__.py:68
 msgid "Shipping tables"
 msgstr ""
 
-#: shuup_shipping_table/admin/__init__.py:81
+#: admin/__init__.py:81
 msgid "Carriers"
 msgstr ""
 
-#: shuup_shipping_table/admin/__init__.py:94
+#: admin/__init__.py:94
 msgid "Regions"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/carrier.py:25
-#: shuup_shipping_table/admin/views/region.py:36
-#: shuup_shipping_table/admin/views/table.py:28
+#: admin/views/carrier.py:25 admin/views/region.py:36 admin/views/table.py:29
 msgid "Name"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/carrier.py:26
-#: shuup_shipping_table/admin/views/table.py:30
+#: admin/views/carrier.py:26 admin/views/table.py:31
 msgid "Enabled"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/carrier.py:27
+#: admin/views/carrier.py:27
 msgid "Shops"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/region.py:37
-#: shuup_shipping_table/admin/views/region.py:103
+#: admin/views/region.py:37 admin/views/region.py:103
 msgid "Type"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/region.py:46
+#: admin/views/region.py:46
 msgid "Import from JSON"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/region.py:51
+#: admin/views/region.py:51
 msgid "Download as JSON"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/region.py:129
+#: admin/views/region.py:129
 msgid "Missing JSON file"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/table.py:29
+#: admin/views/table.py:30
 msgid "Identifier"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/table.py:31
+#: admin/views/table.py:32
 msgid "Start Date"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/table.py:32
+#: admin/views/table.py:33
 msgid "End Date"
 msgstr ""
 
-#: shuup_shipping_table/admin/views/table.py:33
+#: admin/views/table.py:34
 msgid "Carrier"
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_form.jinja:4
+#: admin/views/table.py:66
+msgid "Save as a copy"
+msgstr ""
+
+#: models.py:42
+msgid "Lowest price"
+msgstr ""
+
+#: models.py:43
+msgid "Lowest delivery time"
+msgstr ""
+
+#: models.py:47
+msgid "additional delivery time"
+msgstr ""
+
+#: models.py:49
+msgid "Extra number of days to add."
+msgstr ""
+
+#: models.py:51
+msgid "additional price"
+msgstr ""
+
+#: models.py:53
+msgid "Extra amount to add."
+msgstr ""
+
+#: models.py:108
+msgid "No table found"
+msgstr ""
+
+#: models.py:131
+msgid "Shipping Table: custom fetch mode"
+msgstr ""
+
+#: models.py:132
+msgid "Fetches the price and delivery time using a custom mode."
+msgstr ""
+
+#: models.py:135
+msgid "mode"
+msgstr ""
+
+#: models.py:136
+msgid "Select the mode which will be used to fetch a shipping table."
+msgstr ""
+
+#: models.py:140
+msgid "tables filter"
+msgstr ""
+
+#: models.py:142
+msgid "Only selected tables will be used to calculate shipping. Blank means all available tables."
+msgstr ""
+
+#: models.py:147
+msgid "carriers filter"
+msgstr ""
+
+#: models.py:149
+msgid "Only selected carriers will be used to calculate shipping. Blank means all carriers."
+msgstr ""
+
+#: models.py:179
+msgid "Shipping Table: specific table"
+msgstr ""
+
+#: models.py:180
+msgid "Fetches the price and delivery time from a specific shipping table"
+msgstr ""
+
+#: models.py:183 models.py:321
+msgid "table"
+msgstr ""
+
+#: models.py:184
+msgid "Select the table to fetch the price and delivery time."
+msgstr ""
+
+#: models.py:200 models.py:226 models.py:296
+msgid "name"
+msgstr ""
+
+#: models.py:201 models.py:297
+msgid "enabled"
+msgstr ""
+
+#: models.py:204 models.py:307
+msgid "shops"
+msgstr ""
+
+#: models.py:205
+msgid "Select the shops which can use this carrier. Blank means no shop!"
+msgstr ""
+
+#: models.py:209
+msgid "shipping carrier"
+msgstr ""
+
+#: models.py:210
+msgid "shipping carriers"
+msgstr ""
+
+#: models.py:220
+msgid "priority"
+msgstr ""
+
+#: models.py:222
+msgid "A higher number means this region is most important than other with a lower priority"
+msgstr ""
+
+#: models.py:227
+msgid "description"
+msgstr ""
+
+#: models.py:231
+msgid "shipping region"
+msgstr ""
+
+#: models.py:232
+msgid "shipping regions"
+msgstr ""
+
+#: models.py:253 models.py:276
+msgid "country"
+msgstr ""
+
+#: models.py:254
+msgid "starting postal code"
+msgstr ""
+
+#: models.py:255
+msgid "ending postal code"
+msgstr ""
+
+#: models.py:258
+msgid "shipping region by postal code range"
+msgstr ""
+
+#: models.py:259
+msgid "shipping regions by postal code range"
+msgstr ""
+
+#: models.py:279
+msgid "shipping region by country"
+msgstr ""
+
+#: models.py:280
+msgid "shipping regions by country"
+msgstr ""
+
+#: models.py:294
+msgid "identifier"
+msgstr ""
+
+#: models.py:295
+msgid "A slug identifier, e.g my-table-id-3218321"
+msgstr ""
+
+#: models.py:298
+msgid "carrier"
+msgstr ""
+
+#: models.py:300
+msgid "excluded regions"
+msgstr ""
+
+#: models.py:301
+msgid "Selected regions will be excluded from this table"
+msgstr ""
+
+#: models.py:303
+msgid "start date"
+msgstr ""
+
+#: models.py:304
+msgid "end date"
+msgstr ""
+
+#: models.py:308
+msgid "Select the shops which can use this table. Blank means no shop!"
+msgstr ""
+
+#: models.py:312
+msgid "shipping table"
+msgstr ""
+
+#: models.py:313
+msgid "shipping tables"
+msgstr ""
+
+#: models.py:322
+msgid "region"
+msgstr ""
+
+#: models.py:324
+msgid "start weight (g)"
+msgstr ""
+
+#: models.py:325
+msgid "end weight (g)"
+msgstr ""
+
+#: models.py:327
+msgid "price"
+msgstr ""
+
+#: models.py:328
+msgid "delivery time (days)"
+msgstr ""
+
+#: models.py:331
+msgid "shipping price table"
+msgstr ""
+
+#: models.py:332
+msgid "shipping price tables"
+msgstr ""
+
+#: templates/shipping_table/admin/_edit_table_form.jinja:4
 msgid "General Information"
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:17
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:17
 msgid "Prices"
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:22
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:22
 msgid "Region"
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:23
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:23
 msgid "Start weight (g)"
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:24
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:24
 msgid "End weight (g)"
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:25
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:25
 msgid "Price"
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:26
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:26
 msgid "Delivery time (days)"
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/_edit_table_item_form.jinja:35
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:35
 msgid "To add more itens, please save the current ones. "
 msgstr ""
 
-#: shuup_shipping_table/templates/shipping_table/admin/carrier_edit.jinja:4
+#: templates/shipping_table/admin/carrier_edit.jinja:4
 msgid "New Carrier"
 msgstr ""
 
-#~ msgid "Start weight"
-#~ msgstr ""
+#: templates/shipping_table/admin/region_edit.jinja:9
+msgid "General information"
+msgstr ""
 
-#~ msgid "End weight"
-#~ msgstr ""
+#: templates/shipping_table/admin/region_list.jinja:18
+msgid "This action will overwrite the existing regions with same ID. Are you sure?"
+msgstr ""
 
-#~ msgid "Delivery time"
-#~ msgstr ""
-
+#: templates/shipping_table/admin/table_edit.jinja:4
+msgid "New Table"
+msgstr ""
