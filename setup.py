@@ -8,7 +8,12 @@
 # LICENSE file in the root directory of this source tree.
 
 import setuptools
-from babel.messages import frontend as babel
+
+"""
+TIP:
+    To extract messages:
+        python -m shuup_workbench shuup_makemessages --no-pot-date --no-wrap -l pt_BR --include-location
+"""
 
 NAME = 'shuup-shipping-table'
 VERSION = '1.0.0'
@@ -23,7 +28,6 @@ EXCLUDED_PACKAGES = [
 ]
 
 REQUIRES = [
-
 ]
 
 if __name__ == '__main__':
@@ -38,16 +42,5 @@ if __name__ == '__main__':
         packages=["shuup_shipping_table"],
         include_package_data=True,
         install_requires=REQUIRES,
-        entry_points={"shuup.addon": "shuup_shipping_table=shuup_shipping_table"},
-        cmdclass={'compile_catalog': babel.compile_catalog,
-                  'extract_messages': babel.extract_messages,
-                  'init_catalog': babel.init_catalog,
-                  'update_catalog': babel.update_catalog},
-        message_extractors={
-            'shuup_shipping_table': [
-                ('**.py', 'python', None),
-                ('**/templates/**.html', 'jinja2', None),
-                ('**/templates/**.jinja', 'jinja2', None)
-            ],
-        }
+        entry_points={"shuup.addon": "shuup_shipping_table=shuup_shipping_table"}
     )
