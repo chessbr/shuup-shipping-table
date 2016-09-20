@@ -2,7 +2,7 @@
 
 {% block content %}
 {{ super() }}
-<form id="import-json-form" action="{{ url('shuup_admin:shuup_shipping_table.region.import') }}" method="POST" enctype="multipart/form-data">
+<form id="import-json-form" action="{{ url('shuup_admin:shipping_region.import') }}" method="POST" enctype="multipart/form-data">
 {% csrf_token %}
 <input id="import-json-input" type="file" name="json_file" hidden />
 </form>
@@ -22,11 +22,11 @@
     });
 
     function downloadAsJSON(){
-        window.open("{{ url('shuup_admin:shuup_shipping_table.region.export') }}", "_blank");
+        window.open("{{ url('shuup_admin:shipping_region.export') }}", "_blank");
     }
 
     function importFromJSON(){
-        $("#import-json-input").focus().trigger('click'); 
+        $("#import-json-input").focus().trigger('click');
     }
 
 </script>

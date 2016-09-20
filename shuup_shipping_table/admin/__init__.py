@@ -69,12 +69,12 @@ class ShippingTableModule(ShippingTableAdminModule):
     model = ShippingTable
 
     icon = "fa fa-table"
-    breadcrumbs_menu_entry = MenuEntry(name, url="shuup_admin:shuup_shipping_table.table.list")
-    url_name_prefix = "shuup_admin:shuup_shipping_table.table"
+    breadcrumbs_menu_entry = MenuEntry(name, url="shuup_admin:shipping_table.list")
+    url_name_prefix = "shuup_admin:shipping_table"
     url_prefix = "^shipping_table/table"
     view_template = "shuup_shipping_table.admin.views.table.Table%sView"
-    name_template = "shuup_shipping_table.table.%s"
-    menu_entry_url = "shuup_admin:shuup_shipping_table.table.list"
+    name_template = "shipping_table.%s"
+    menu_entry_url = "shuup_admin:shipping_table.list"
 
 
 class ShippingCarrierModule(ShippingTableAdminModule):
@@ -82,12 +82,12 @@ class ShippingCarrierModule(ShippingTableAdminModule):
     model = ShippingCarrier
 
     icon = "fa fa-truck"
-    breadcrumbs_menu_entry = MenuEntry(name, url="shuup_admin:shuup_shipping_table.carrier.list")
-    url_name_prefix = "shuup_admin:shuup_shipping_table.carrier"
+    breadcrumbs_menu_entry = MenuEntry(name, url="shuup_admin:shipping_carrier.list")
+    url_name_prefix = "shuup_admin:shipping_carrier"
     url_prefix = "^shipping_table/carrier"
     view_template = "shuup_shipping_table.admin.views.carrier.Carrier%sView"
-    name_template = "shuup_shipping_table.carrier.%s"
-    menu_entry_url = "shuup_admin:shuup_shipping_table.carrier.list"
+    name_template = "shipping_carrier.%s"
+    menu_entry_url = "shuup_admin:shipping_carrier.list"
 
 
 class ShippingRegionModule(ShippingTableAdminModule):
@@ -95,12 +95,12 @@ class ShippingRegionModule(ShippingTableAdminModule):
     model = ShippingRegion
 
     icon = "fa fa-map-marker"
-    breadcrumbs_menu_entry = MenuEntry(name, url="shuup_admin:shuup_shipping_table.region.list")
-    url_name_prefix = "shuup_admin:shuup_shipping_table.region"
+    breadcrumbs_menu_entry = MenuEntry(name, url="shuup_admin:shipping_region.list")
+    url_name_prefix = "shuup_admin:shipping_region"
     url_prefix = "^shipping_table/region"
     view_template = "shuup_shipping_table.admin.views.region.Region%sView"
-    name_template = "shuup_shipping_table.region.%s"
-    menu_entry_url = "shuup_admin:shuup_shipping_table.region.list"
+    name_template = "shipping_region.%s"
+    menu_entry_url = "shuup_admin:shipping_region.list"
 
     def get_urls(self):
         urls = super(ShippingRegionModule, self).get_urls()

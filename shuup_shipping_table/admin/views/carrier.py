@@ -21,7 +21,7 @@ from shuup.admin.utils.views import CreateOrUpdateView, PicotableListView
 
 class CarrierListView(PicotableListView):
     model = ShippingCarrier
-    columns = [
+    default_columns = [
         Column("name", _("Name"), filter_config=TextFilter()),
         Column("enabled", _("Enabled")),
         Column("shops", _("Shops"))

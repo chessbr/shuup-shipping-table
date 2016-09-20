@@ -25,7 +25,7 @@ from shuup.utils.i18n import get_locally_formatted_datetime
 
 class TableListView(PicotableListView):
     model = ShippingTable
-    columns = [
+    default_columns = [
         Column("name", _("Name"), filter_config=TextFilter()),
         Column("identifier", _("Identifier"), filter_config=TextFilter()),
         Column("enabled", _("Enabled")),

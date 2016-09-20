@@ -32,7 +32,7 @@ from shuup.apps.provides import get_provide_objects
 class RegionListView(PicotableListView):
     model = ShippingRegion
     template_name = "shipping_table/admin/region_list.jinja"
-    columns = [
+    default_columns = [
         Column("name", _("Name"), filter_config=TextFilter()),
         Column("type", _(u"Type"), display="get_type_display", sortable=False),
     ]
@@ -64,7 +64,7 @@ class ShippingRegionForm(ShuupAdminForm):
 
 class RegionDeleteView(DeleteView):
     model = ShippingRegion
-    success_url = reverse_lazy("shuup_admin:shuup_shipping_table.region.list")
+    success_url = reverse_lazy("shuup_admin:shipping_region.list")
 
 
 class RegionEditView(CreateOrUpdateView):
@@ -110,7 +110,7 @@ class RegionEditView(CreateOrUpdateView):
         return form
 
     def get_success_url(self):
-        return reverse("shuup_admin:shuup_shipping_table.region.list")
+        return reverse("shuup_admin:shipping_region.list")
 
 
 class RegionImportView(View):
@@ -128,7 +128,7 @@ class RegionImportView(View):
         else:
             messages.error(request, _("Missing JSON file"))
 
-        return HttpResponseRedirect(reverse("shuup_admin:shuup_shipping_table.region.list"))
+        return HttpResponseRedirect(reverse("shuup_admin:shipping_region.list"))
 
 
 class RegionExportView(View):
