@@ -14,6 +14,7 @@ from shuup_shipping_table.models import (
 
 from django import forms
 from django.forms.models import BaseModelFormSet
+from django.utils.translation import ugettext_lazy as _
 
 from shuup.admin.form_part import FormPart, TemplatedFormDef
 

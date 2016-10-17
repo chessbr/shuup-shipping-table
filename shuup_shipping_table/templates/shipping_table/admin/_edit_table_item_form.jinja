@@ -6,17 +6,20 @@
         {{ h|safe }}
     {% endfor %}
     <tr>
-        <td>{{ bs3.field(f.region, render_label=False, form_group_class="") }}</td>
+        <td>{{ f.region.as_widget(attrs={"class": "form-control no-select2"})|safe }}</td>
         <td>{{ bs3.field(f.start_weight, set_placeholder=False, render_label=False, form_group_class="") }}</td>
         <td>{{ bs3.field(f.end_weight, set_placeholder=False, render_label=False, form_group_class="") }}</td>
         <td>{{ bs3.field(f.price, set_placeholder=False, render_label=False, form_group_class="") }}</td>
         <td>{{ bs3.field(f.delivery_time, set_placeholder=False, render_label=False, form_group_class="") }}</td>
+        <td>{{ f.DELETE.as_widget()|safe  }}</td>
     </tr>
 {% endmacro %}
 
 {% call content_block(_("Prices"), "fa-usd") %}
     {{ table_item_form.management_form }}
-    <table class="table table-hover table-bordered table-condensed table-striped">
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered table-condensed table-striped">
         <tbody>
         <tr>
             <th class="col-xs-4">{{ _("Region") }}</th>
@@ -24,13 +27,15 @@
             <th class="col-xs-2">{{ _("End weight (g)") }}</th>
             <th class="col-xs-2">{{ _("Price") }}</th>
             <th class="col-xs-2">{{ _("Delivery time (days)") }}</th>
+            <th class="col-xs-1">{{ _("Remove") }}</th>
         </tr>
 
         {% for f in table_item_form %}
             {{ render_table_item_form(f, table_item_form, loop.index) }}
         {% endfor %}
         </tbody>
-    </table>
+        </table>
+    </div>
 
     <div class="text-center"><em>{{ _("To add more itens, please save the current ones. ") }}</em></div>
 
