@@ -8,15 +8,40 @@
 # LICENSE file in the root directory of this source tree.
 
 from shuup_shipping_table.models import (
-    ShippingTable, ShippingTableByModeBehaviorComponent, ShippingTableItem,
-    SpecificShippingTableBehaviorComponent
+    AddressShippingRegion, CountryShippingRegion, PostalCodeRangeShippingRegion, ShippingTable,
+    ShippingTableByModeBehaviorComponent, ShippingTableItem, SpecificShippingTableBehaviorComponent
 )
+
+from shuup.admin.form_part import FormPart, TemplatedFormDef
+from shuup.admin.forms._base import ShuupAdminForm
 
 from django import forms
 from django.forms.models import BaseModelFormSet
-from django.utils.translation import ugettext_lazy as _
 
-from shuup.admin.form_part import FormPart, TemplatedFormDef
+
+class ShippingTablePostalCodeRegionForm(ShuupAdminForm):
+    class Meta:
+        model = PostalCodeRangeShippingRegion
+        exclude = ()
+
+
+class ShippingTableCountryRegionForm(ShuupAdminForm):
+    class Meta:
+        model = CountryShippingRegion
+        exclude = ()
+
+
+class ShippingTableAddressRegionForm(ShuupAdminForm):
+    class Meta:
+        model = AddressShippingRegion
+        exclude = ()
+        widgets = {
+            'region': forms.TextInput(),
+            'city': forms.TextInput(),
+            'street1': forms.TextInput(),
+            'street2': forms.TextInput(),
+            'street3': forms.TextInput(),
+        }
 
 
 class ShippingTableByModeBehaviorComponentForm(forms.ModelForm):

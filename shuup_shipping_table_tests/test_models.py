@@ -13,18 +13,14 @@ from datetime import timedelta
 from decimal import Decimal
 
 import pytest
-
 from shuup_shipping_table.models import (
-    CountryShippingRegion, FetchTableMode, PostalCodeRangeShippingRegion, ShippingCarrier,
-    ShippingTable, ShippingTableByModeBehaviorComponent, ShippingTableItem,
-    SpecificShippingTableBehaviorComponent
+    AddressShippingRegion, CountryShippingRegion, FetchTableMode, PostalCodeRangeShippingRegion,
+    ShippingCarrier, ShippingTable, ShippingTableByModeBehaviorComponent, ShippingTableItem,
+    SpecificShippingTableBehaviorComponent, KG_TO_G
 )
 from shuup_tests.front.test_checkout_flow import fill_address_inputs
 from shuup_tests.utils import SmartClient
 from shuup_tests.utils.basketish_order_source import BasketishOrderSource
-
-from django.core.urlresolvers import reverse
-from django.utils.timezone import now
 
 from shuup.core.defaults.order_statuses import create_default_order_statuses
 from shuup.core.models._contacts import get_person_contact
@@ -39,6 +35,9 @@ from shuup.testing.factories import (
 from shuup.testing.mock_population import populate_if_required
 from shuup.testing.soup_utils import extract_form_fields
 from shuup.xtheme._theme import set_current_theme
+
+from django.core.urlresolvers import reverse
+from django.utils.timezone import now
 
 
 def get_custom_carrier_service():
@@ -575,7 +574,7 @@ def test_checkout(admin_user):
     inputs['shipping-country'] = "BR"
 
     response = c.post(addresses_path, data=inputs)
-    
+
     assert response.status_code == 302, "Address phase should redirect forth"
     assert response.url.endswith(methods_path)
 
@@ -603,3 +602,227 @@ def test_checkout(admin_user):
     assert Order.objects.count() == 1
     order = Order.objects.filter(payment_method=payment_method).first()
     assert order.payment_status == PaymentStatus.NOT_PAID
+
+
+@pytest.mark.django_db
+def test_postal_code_range_region(admin_user):
+    service = get_custom_carrier_service()
+    component = ShippingTableByModeBehaviorComponent.objects.create(
+        mode=FetchTableMode.LOWEST_DELIVERY_TIME
+    )
+    service.behavior_components.add(component)
+    source = get_source(admin_user, service)
+
+    source.add_line(
+        type=OrderLineType.PRODUCT,
+        product=get_default_product(),
+        supplier=get_default_supplier(),
+        quantity=1,
+        base_unit_price=source.create_price(10),
+        weight=Decimal("0.2")
+    )
+
+    region = PostalCodeRangeShippingRegion(start_postal_code=998000,
+                                           end_postal_code=998999,
+                                           country="BR")
+    source.shipping_address.country = "BR"
+    source.shipping_address.postal_code = "823131"
+    assert region.is_compatible_with(source) is False
+    source.shipping_address.postal_code = "998001"
+    assert region.is_compatible_with(source)
+    source.shipping_address.country = "US"
+    assert region.is_compatible_with(source) is False
+
+
+@pytest.mark.django_db
+def test_country_region(admin_user):
+    service = get_custom_carrier_service()
+    component = ShippingTableByModeBehaviorComponent.objects.create(
+        mode=FetchTableMode.LOWEST_DELIVERY_TIME
+    )
+    service.behavior_components.add(component)
+    source = get_source(admin_user, service)
+
+    source.add_line(
+        type=OrderLineType.PRODUCT,
+        product=get_default_product(),
+        supplier=get_default_supplier(),
+        quantity=1,
+        base_unit_price=source.create_price(10),
+        weight=Decimal("0.2")
+    )
+
+    region = CountryShippingRegion(country="BR")
+    source.shipping_address.country = "US"
+    assert region.is_compatible_with(source) is False
+    source.shipping_address.country = "BR"
+    assert region.is_compatible_with(source)
+
+
+@pytest.mark.django_db
+def test_address_region(admin_user):
+    service = get_custom_carrier_service()
+    component = ShippingTableByModeBehaviorComponent.objects.create(
+        mode=FetchTableMode.LOWEST_DELIVERY_TIME
+    )
+    service.behavior_components.add(component)
+    source = get_source(admin_user, service)
+
+    source.add_line(
+        type=OrderLineType.PRODUCT,
+        product=get_default_product(),
+        supplier=get_default_supplier(),
+        quantity=1,
+        base_unit_price=source.create_price(10),
+        weight=Decimal("0.2")
+    )
+
+    # match region country
+    region = AddressShippingRegion(country="BR")
+    source.shipping_address.country = "BR"
+    assert region.is_compatible_with(source)
+
+    # does not match anymore
+    region.region = "SC"
+    source.shipping_address.region = "PR"
+    assert region.is_compatible_with(source) is False
+
+    # match region
+    source.shipping_address.region = "SC"
+    assert region.is_compatible_with(source)
+
+    # check city
+    source.shipping_address.city = "Plumenau"
+    region.city = "Indaiaba"
+    assert region.is_compatible_with(source) is False
+    region.city = "Plumenau"
+    assert region.is_compatible_with(source)
+
+    # check street1
+    source.shipping_address.street1 = "R test"
+    region.street1 = "T tosta"
+    assert region.is_compatible_with(source) is False
+    region.street1 = "R test"
+    assert region.is_compatible_with(source)
+
+    # check street2
+    source.shipping_address.street2 = "R test"
+    region.street2 = "T tosta"
+    assert region.is_compatible_with(source) is False
+    region.street2 = "R test"
+    assert region.is_compatible_with(source)
+
+    # check street3
+    source.shipping_address.street3 = "R test"
+    region.street3 = "T tosta"
+    assert region.is_compatible_with(source) is False
+    region.street3 = "R test"
+    assert region.is_compatible_with(source)
+
+    # clean all attrs
+    region.region = ""
+    region.city = ""
+    region.street1 = ""
+    region.street1 = ""
+    region.street1 = ""
+
+    # match only street3
+    source.shipping_address.street3 = "R test"
+    region.street3 = "T tosta"
+    assert region.is_compatible_with(source) is False
+    region.street3 = "R test"
+    assert region.is_compatible_with(source)
+
+    # match several cities
+    region.street = ""
+    region.city = "sao paulo, santos, curitiba"
+    assert region.is_compatible_with(source) is False
+    source.shipping_address.city = "santos"
+    assert region.is_compatible_with(source)
+
+    # match several regions
+    region.region = "sp, rj, pr"
+    assert region.is_compatible_with(source) is False
+    source.shipping_address.region = "sp"
+    assert region.is_compatible_with(source)
+
+    # match several street1
+    region.street1 = "st1, st2, st3"
+    assert region.is_compatible_with(source) is False
+    source.shipping_address.street1 = "st3"
+    assert region.is_compatible_with(source)
+
+    # match several street2
+    region.street2 = "st4, st5, st6"
+    assert region.is_compatible_with(source) is False
+    source.shipping_address.street2 = "st4"
+    assert region.is_compatible_with(source)
+
+    # match several street3
+    region.street3 = "st7, st8, st9"
+    assert region.is_compatible_with(source) is False
+    source.shipping_address.street3 = "st9"
+    assert region.is_compatible_with(source)
+
+
+@pytest.mark.django_db
+def test_shipping_table_behavior(admin_user):
+    service = get_custom_carrier_service()
+    component = ShippingTableByModeBehaviorComponent.objects.create(
+        mode=FetchTableMode.LOWEST_DELIVERY_TIME
+    )
+    service.behavior_components.add(component)
+    source = get_source(admin_user, service)
+
+    PRODUCT_WEIGHT = Decimal(700.0)  # in grams
+    PRODUCT_WIDTH = Decimal(340)
+    PRODUCT_DEPTH = Decimal(320)
+    PRODUCT_HEIGHT = Decimal(180)
+
+    product = get_default_product()
+    product.gross_weight = PRODUCT_WEIGHT
+    product.width = PRODUCT_WIDTH
+    product.depth = PRODUCT_DEPTH
+    product.height = PRODUCT_HEIGHT
+    product.save()
+
+    source.add_line(
+        type=OrderLineType.PRODUCT,
+        product=product,
+        supplier=get_default_supplier(),
+        quantity=1,
+        base_unit_price=source.create_price(10),
+    )
+
+    assert abs((component.get_source_weight(source) * KG_TO_G) - PRODUCT_WEIGHT) < Decimal(0.0001)
+
+    # configure cubic usage
+    component.use_cubic_weight = True
+    component.cubic_weight_factor = Decimal(6000.0)
+    component.cubic_weight_exemption = Decimal(3.000)
+    component.save()
+
+    # not using cubic weight because of weight exemption
+    assert abs((component.get_source_weight(source) * KG_TO_G) - PRODUCT_WEIGHT) < Decimal(0.0001)
+
+    source.add_line(
+        type=OrderLineType.PRODUCT,
+        product=product,
+        supplier=get_default_supplier(),
+        quantity=7,
+        base_unit_price=source.create_price(10),
+    )
+
+    cubic_weight = (PRODUCT_WIDTH * PRODUCT_DEPTH * (PRODUCT_HEIGHT * 8)) / component.cubic_weight_factor
+    assert abs((component.get_source_weight(source) * KG_TO_G) - cubic_weight) < Decimal(0.0001)
+
+    # set constraints
+    component.max_package_width = Decimal(1000)
+    component.max_package_height = Decimal(1000)
+    component.max_package_length = Decimal(1000)
+    component.max_package_edges_sum = Decimal(2000)
+    component.max_package_weight = Decimal(10)
+    component.save()
+
+    cubic_weight = (PRODUCT_WIDTH * PRODUCT_DEPTH * (PRODUCT_HEIGHT * 8)) / component.cubic_weight_factor
+    assert abs((component.get_source_weight(source) * KG_TO_G) - cubic_weight) < Decimal(0.0001)

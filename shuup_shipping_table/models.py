@@ -17,6 +17,11 @@ from enumfields import Enum, EnumIntegerField
 from parler.fields import TranslatedField
 from parler.models import TranslatedFields
 
+from shuup_order_packager.algorithms import SimplePackager
+from shuup_order_packager.constraints import (
+    SimplePackageDimensionConstraint, WeightPackageConstraint
+)
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Q
@@ -32,6 +37,9 @@ from shuup.core.models._shops import Shop
 from shuup.utils.dates import DurationRange
 
 logger = logging.getLogger(__name__)
+
+G_TO_KG = Decimal(0.001)
+KG_TO_G = Decimal(1000)
 
 
 class FetchTableMode(Enum):
@@ -52,15 +60,116 @@ class ShippingTableBehaviorComponent(ServiceBehaviorComponent):
                                 default=Decimal(),
                                 help_text=_("Extra amount to add."))
 
+    use_cubic_weight = models.BooleanField(verbose_name=_("Use Cubic Weight"),
+                                           default=False,
+                                           help_text=_("Enable this to calculate the cubic weight and use "
+                                                       "the heaviest measurement (real weight or cubic weight)."))
+
+    cubic_weight_factor = models.DecimalField(verbose_name=_("Cubic Weight Factor (cm³)"),
+                                              decimal_places=2, max_digits=10,
+                                              default=Decimal(6000),
+                                              help_text=_("Google it if you don't know what you're doing."))
+
+    cubic_weight_exemption = MeasurementField(unit="kg",
+                                              verbose_name=_("Cubic Weight exemption value (kg)"),
+                                              decimal_places=3, max_digits=8,
+                                              default=Decimal(),
+                                              help_text=_("The Cubic Weight will be considered if the "
+                                                          "sum of all products real weights "
+                                                          "is higher then this value."))
+
+    max_package_width = MeasurementField(unit="mm",
+                                         verbose_name=_("Max package width (mm)"),
+                                         decimal_places=2, max_digits=7,
+                                         default=Decimal(),
+                                         help_text=_("This is only used for Cubic Weight method "
+                                                     "since the order/basket will be splitted into packages "
+                                                     "for volume calculation."))
+
+    max_package_height = MeasurementField(unit="mm",
+                                          verbose_name=_("Max package height (mm)"),
+                                          decimal_places=2, max_digits=7,
+                                          default=Decimal(),
+                                          help_text=_("This is only used for Cubic Weight method "
+                                                      "since the order/basket will be splitted into packages "
+                                                      "for volume calculation."))
+
+    max_package_length = MeasurementField(unit="mm",
+                                          verbose_name=_("Max package length (mm)"),
+                                          decimal_places=2, max_digits=7,
+                                          default=Decimal(),
+                                          help_text=_("This is only used for Cubic Weight method "
+                                                      "since the order/basket will be splitted into packages "
+                                                      "for volume calculation."))
+
+    max_package_edges_sum = MeasurementField(unit="mm",
+                                             verbose_name=_("Max package edge sum (mm)"),
+                                             decimal_places=2, max_digits=7,
+                                             default=Decimal(),
+                                             help_text=_("The max sum of width, height and length of the package. "
+                                                         "This is only used for Cubic Weight method "
+                                                         "since the order/basket will be splitted into packages "
+                                                         "for volume calculation."))
+
+    max_package_weight = MeasurementField(unit="kg",
+                                          verbose_name=_("Max package weight (kg)"),
+                                          decimal_places=3, max_digits=8,
+                                          default=Decimal(),
+                                          help_text=_("This is only used for Cubic Weight method "
+                                                      "since the order/basket will be splitted into packages "
+                                                      "for volume calculation."))
+
     class Meta:
         abstract = True
+
+    def get_source_weight(self, source):
+        """
+        Calculates the source weight (in kg) based on behavior component configuration.
+        """
+        weight = source.total_gross_weight * G_TO_KG  # transform g in kg
+
+        if self.use_cubic_weight and weight > self.cubic_weight_exemption:
+            # create the packager
+            packager = SimplePackager()
+
+            # add the constraints, if configured
+            if self.max_package_height and self.max_package_length and \
+                    self.max_package_width and self.max_package_edges_sum:
+
+                packager.add_constraint(SimplePackageDimensionConstraint(
+                    self.max_package_width,
+                    self.max_package_length,
+                    self.max_package_height,
+                    self.max_package_edges_sum
+                ))
+
+            if self.max_package_weight:
+                packager.add_constraint(WeightPackageConstraint(self.max_package_weight * KG_TO_G))
+
+            # split products into packages
+            packages = packager.pack_source(source)
+
+            # check if some package was created
+            if packages:
+                total_weight = 0
+
+                for package in packages:
+
+                    if package.weight > self.cubic_weight_exemption:
+                        total_weight = total_weight + (package.volume / self.cubic_weight_factor * G_TO_KG)
+                    else:
+                        total_weight = total_weight + package.weight * G_TO_KG
+
+                weight = total_weight
+
+        return weight
 
     def get_available_table_items(self, source):
         """
         Fetches the available table items
         """
         now_dt = now()
-        weight = sum(((x.get("weight") or 0) for x in source.get_lines()), 0)
+        weight = self.get_source_weight(source)
 
         # 1) source total weight must be in a range
         # 2) enabled tables
@@ -151,7 +260,9 @@ class ShippingTableByModeBehaviorComponent(ShippingTableBehaviorComponent):
                                                   "Blank means all carriers."))
 
     def get_available_table_items(self, source):
-        """ Add extra filtering """
+        """
+        Add extra filtering
+        """
 
         table_items = super(
             ShippingTableByModeBehaviorComponent, self
@@ -286,6 +397,62 @@ class CountryShippingRegion(ShippingRegion):
         if not source.shipping_address or not source.shipping_address.country:
             return False
         return source.shipping_address.country == self.country
+
+    def __str__(self):
+        return self.name
+
+
+@python_2_unicode_compatible
+class AddressShippingRegion(ShippingRegion):
+    country = CountryField(verbose_name=_("country"))
+
+    region = models.TextField(verbose_name=_('region'),
+                              blank=True, null=True,
+                              help_text=_("use comma-separated values to match several names"))
+
+    city = models.TextField(verbose_name=_('city'),
+                            blank=True, null=True,
+                            help_text=_("use comma-separated values to match several names"))
+
+    street1 = models.TextField(verbose_name=_('street (1)'),
+                               blank=True, null=True,
+                               help_text=_("use comma-separated values to match several names"))
+
+    street2 = models.TextField(verbose_name=_('street (2)'),
+                               blank=True, null=True,
+                               help_text=_("use comma-separated values to match several names"))
+
+    street3 = models.TextField(verbose_name=_('street (3)'),
+                               blank=True, null=True,
+                               help_text=_("use comma-separated values to match several names"))
+
+    class Meta:
+        verbose_name = _("shipping region by address")
+        verbose_name_plural = _("shipping regions by address")
+
+    def is_compatible_with(self, source):
+        if not source.shipping_address or not source.shipping_address.country or \
+                source.shipping_address.country != self.country:
+            return False
+
+        attrs_check = ('region', 'city', 'street1', 'street2', 'street3')
+
+        # address attributes to check, those configured must match
+        for attr_name in attrs_check:
+            attr_value = getattr(self, attr_name, None)
+
+            if attr_value:
+                if not getattr(source.shipping_address, attr_name, None):
+                    return False
+
+                # split, transform to upper and strip
+                values = [v.upper().strip() for v in attr_value.split(",")]
+                addr_value = getattr(source.shipping_address, attr_name).upper().strip()
+
+                if addr_value not in values:
+                    return False
+
+        return True
 
     def __str__(self):
         return self.name
