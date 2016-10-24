@@ -7,6 +7,7 @@ install:
   - pip install -U pip
   - pip install coveralls
   - pip install -e git+https://github.com/rockho-team/shuup.git@stable#egg=shuup[everything]
+  - pip install -r requirements.txt
   - pip install -e .
 script:
   - py.test -ra -vvv --cov-config .coveragerc --cov shuup_shipping_table shuup_shipping_table_tests

@@ -21,8 +21,9 @@ class ShuupShippingTableAppConfig(AppConfig):
             "shuup_shipping_table.admin:ShippingRegionModule",
         ],
         "shipping_table_region_form": [
-            "shuup_shipping_table.forms:ShippingTablePostalCodeRegionForm",
-            "shuup_shipping_table.forms:ShippingTableCountryRegionForm",
+            "shuup_shipping_table.admin.forms:ShippingTablePostalCodeRegionForm",
+            "shuup_shipping_table.admin.forms:ShippingTableCountryRegionForm",
+            "shuup_shipping_table.admin.forms:ShippingTableAddressRegionForm",
         ],
         "service_behavior_component_form": [
             "shuup_shipping_table.admin.forms:ShippingTableByModeBehaviorComponentForm",
