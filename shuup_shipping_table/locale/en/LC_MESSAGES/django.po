@@ -15,6 +15,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: admin/__init__.py:21
+msgid "ShippingTable"
+msgstr ""
+
+#: admin/__init__.py:23
 msgid "Shipping Table"
 msgstr ""
 
@@ -78,219 +82,299 @@ msgstr ""
 msgid "Save as a copy"
 msgstr ""
 
-#: models.py:42
+#: models.py:50
 msgid "Lowest price"
 msgstr ""
 
-#: models.py:43
+#: models.py:51
 msgid "Lowest delivery time"
 msgstr ""
 
-#: models.py:47
+#: models.py:55
 msgid "additional delivery time"
 msgstr ""
 
-#: models.py:49
+#: models.py:57
 msgid "Extra number of days to add."
 msgstr ""
 
-#: models.py:51
+#: models.py:59
 msgid "additional price"
 msgstr ""
 
-#: models.py:53
+#: models.py:61
 msgid "Extra amount to add."
 msgstr ""
 
-#: models.py:108
+#: models.py:63
+msgid "Use Cubic Weight"
+msgstr ""
+
+#: models.py:65
+msgid "Enable this to calculate the cubic weight and use the heaviest measurement (real weight or cubic weight)."
+msgstr ""
+
+#: models.py:68
+msgid "Cubic Weight Factor (cm³)"
+msgstr ""
+
+#: models.py:71
+msgid "Google it if you don't know what you're doing."
+msgstr ""
+
+#: models.py:74
+msgid "Cubic Weight exemption value (kg)"
+msgstr ""
+
+#: models.py:77
+msgid "The Cubic Weight will be considered if the sum of all products real weights is higher then this value."
+msgstr ""
+
+#: models.py:82
+msgid "Max package width (mm)"
+msgstr ""
+
+#: models.py:85 models.py:93 models.py:101 models.py:118
+msgid "This is only used for Cubic Weight method since the order/basket will be splitted into packages for volume calculation."
+msgstr ""
+
+#: models.py:90
+msgid "Max package height (mm)"
+msgstr ""
+
+#: models.py:98
+msgid "Max package length (mm)"
+msgstr ""
+
+#: models.py:106
+msgid "Max package edge sum (mm)"
+msgstr ""
+
+#: models.py:109
+msgid "The max sum of width, height and length of the package. This is only used for Cubic Weight method since the order/basket will be splitted into packages for volume calculation."
+msgstr ""
+
+#: models.py:115
+msgid "Max package weight (kg)"
+msgstr ""
+
+#: models.py:217
 msgid "No table found"
 msgstr ""
 
-#: models.py:131
+#: models.py:240
 msgid "Shipping Table: custom fetch mode"
 msgstr ""
 
-#: models.py:132
+#: models.py:241
 msgid "Fetches the price and delivery time using a custom mode."
 msgstr ""
 
-#: models.py:135
+#: models.py:244
 msgid "mode"
 msgstr ""
 
-#: models.py:136
+#: models.py:245
 msgid "Select the mode which will be used to fetch a shipping table."
 msgstr ""
 
-#: models.py:140
+#: models.py:249
 msgid "tables filter"
 msgstr ""
 
-#: models.py:142
+#: models.py:251
 msgid "Only selected tables will be used to calculate shipping. Blank means all available tables."
 msgstr ""
 
-#: models.py:147
+#: models.py:256
 msgid "carriers filter"
 msgstr ""
 
-#: models.py:149
+#: models.py:258
 msgid "Only selected carriers will be used to calculate shipping. Blank means all carriers."
 msgstr ""
 
-#: models.py:179
+#: models.py:290
 msgid "Shipping Table: specific table"
 msgstr ""
 
-#: models.py:180
+#: models.py:291
 msgid "Fetches the price and delivery time from a specific shipping table"
 msgstr ""
 
-#: models.py:183 models.py:321
+#: models.py:294 models.py:491
 msgid "table"
 msgstr ""
 
-#: models.py:184
+#: models.py:295
 msgid "Select the table to fetch the price and delivery time."
 msgstr ""
 
-#: models.py:200 models.py:226 models.py:296
+#: models.py:311 models.py:337 models.py:466
 msgid "name"
 msgstr ""
 
-#: models.py:201 models.py:297
+#: models.py:312 models.py:467
 msgid "enabled"
 msgstr ""
 
-#: models.py:204 models.py:307
+#: models.py:315 models.py:477
 msgid "shops"
 msgstr ""
 
-#: models.py:205
+#: models.py:316
 msgid "Select the shops which can use this carrier. Blank means no shop!"
 msgstr ""
 
-#: models.py:209
+#: models.py:320
 msgid "shipping carrier"
 msgstr ""
 
-#: models.py:210
+#: models.py:321
 msgid "shipping carriers"
 msgstr ""
 
-#: models.py:220
+#: models.py:331
 msgid "priority"
 msgstr ""
 
-#: models.py:222
+#: models.py:333
 msgid "A higher number means this region is most important than other with a lower priority"
 msgstr ""
 
-#: models.py:227
+#: models.py:338
 msgid "description"
 msgstr ""
 
-#: models.py:231
+#: models.py:342
 msgid "shipping region"
 msgstr ""
 
-#: models.py:232
+#: models.py:343
 msgid "shipping regions"
 msgstr ""
 
-#: models.py:253 models.py:276
+#: models.py:364 models.py:390 models.py:407
 msgid "country"
 msgstr ""
 
-#: models.py:254
+#: models.py:365
 msgid "starting postal code"
 msgstr ""
 
-#: models.py:255
+#: models.py:366
 msgid "ending postal code"
 msgstr ""
 
-#: models.py:258
+#: models.py:369
 msgid "shipping region by postal code range"
 msgstr ""
 
-#: models.py:259
+#: models.py:370
 msgid "shipping regions by postal code range"
 msgstr ""
 
-#: models.py:279
+#: models.py:393
 msgid "shipping region by country"
 msgstr ""
 
-#: models.py:280
+#: models.py:394
 msgid "shipping regions by country"
 msgstr ""
 
-#: models.py:294
-msgid "identifier"
-msgstr ""
-
-#: models.py:295
-msgid "A slug identifier, e.g my-table-id-3218321"
-msgstr ""
-
-#: models.py:298
-msgid "carrier"
-msgstr ""
-
-#: models.py:300
-msgid "excluded regions"
-msgstr ""
-
-#: models.py:301
-msgid "Selected regions will be excluded from this table"
-msgstr ""
-
-#: models.py:303
-msgid "start date"
-msgstr ""
-
-#: models.py:304
-msgid "end date"
-msgstr ""
-
-#: models.py:308
-msgid "Select the shops which can use this table. Blank means no shop!"
-msgstr ""
-
-#: models.py:312
-msgid "shipping table"
-msgstr ""
-
-#: models.py:313
-msgid "shipping tables"
-msgstr ""
-
-#: models.py:322
+#: models.py:409 models.py:492
 msgid "region"
 msgstr ""
 
-#: models.py:324
+#: models.py:411 models.py:415 models.py:419 models.py:423 models.py:427
+msgid "use comma-separated values to match several names"
+msgstr ""
+
+#: models.py:413
+msgid "city"
+msgstr ""
+
+#: models.py:417
+msgid "street (1)"
+msgstr ""
+
+#: models.py:421
+msgid "street (2)"
+msgstr ""
+
+#: models.py:425
+msgid "street (3)"
+msgstr ""
+
+#: models.py:430
+msgid "shipping region by address"
+msgstr ""
+
+#: models.py:431
+msgid "shipping regions by address"
+msgstr ""
+
+#: models.py:464
+msgid "identifier"
+msgstr ""
+
+#: models.py:465
+msgid "A slug identifier, e.g my-table-id-3218321"
+msgstr ""
+
+#: models.py:468
+msgid "carrier"
+msgstr ""
+
+#: models.py:470
+msgid "excluded regions"
+msgstr ""
+
+#: models.py:471
+msgid "Selected regions will be excluded from this table"
+msgstr ""
+
+#: models.py:473
+msgid "start date"
+msgstr ""
+
+#: models.py:474
+msgid "end date"
+msgstr ""
+
+#: models.py:478
+msgid "Select the shops which can use this table. Blank means no shop!"
+msgstr ""
+
+#: models.py:482
+msgid "shipping table"
+msgstr ""
+
+#: models.py:483
+msgid "shipping tables"
+msgstr ""
+
+#: models.py:494
 msgid "start weight (g)"
 msgstr ""
 
-#: models.py:325
+#: models.py:495
 msgid "end weight (g)"
 msgstr ""
 
-#: models.py:327
+#: models.py:497
 msgid "price"
 msgstr ""
 
-#: models.py:328
+#: models.py:498
 msgid "delivery time (days)"
 msgstr ""
 
-#: models.py:331
+#: models.py:501
 msgid "shipping price table"
 msgstr ""
 
-#: models.py:332
+#: models.py:502
 msgid "shipping price tables"
 msgstr ""
 
@@ -298,31 +382,35 @@ msgstr ""
 msgid "General Information"
 msgstr ""
 
-#: templates/shipping_table/admin/_edit_table_item_form.jinja:17
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:18
 msgid "Prices"
 msgstr ""
 
-#: templates/shipping_table/admin/_edit_table_item_form.jinja:22
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:25
 msgid "Region"
 msgstr ""
 
-#: templates/shipping_table/admin/_edit_table_item_form.jinja:23
-msgid "Start weight (g)"
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:26
+msgid "Start weight (kg)"
 msgstr ""
 
-#: templates/shipping_table/admin/_edit_table_item_form.jinja:24
-msgid "End weight (g)"
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:27
+msgid "End weight (kg)"
 msgstr ""
 
-#: templates/shipping_table/admin/_edit_table_item_form.jinja:25
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:28
 msgid "Price"
 msgstr ""
 
-#: templates/shipping_table/admin/_edit_table_item_form.jinja:26
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:29
 msgid "Delivery time (days)"
 msgstr ""
 
-#: templates/shipping_table/admin/_edit_table_item_form.jinja:35
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:30
+msgid "Remove"
+msgstr ""
+
+#: templates/shipping_table/admin/_edit_table_item_form.jinja:40
 msgid "To add more itens, please save the current ones. "
 msgstr ""
 
