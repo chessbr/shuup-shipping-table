@@ -18,7 +18,7 @@ from shuup.admin.utils.urls import admin_url, derive_model_url, get_edit_and_lis
 
 
 class ShippingTableAdminModule(AdminModule):
-    category = _("ShippingTable")
+    category = "Shipping-Table"
     model = None
     name = _("Shipping Table")
     url_prefix = None
